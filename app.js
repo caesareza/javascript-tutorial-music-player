@@ -56,29 +56,8 @@ audio.onended = event => {
     nextSong()
 }
 
-playButton.addEventListener('click', () => {
-    if (isSongPlaying) {
-        audioPause()
-        return
-    }
-    audioPlay()
-})
-
-nextButton.addEventListener('click', () => {
-    nextSong()
-})
-
-prevButton.addEventListener('click', () => {
-    prevSong()
-})
-
-const audioPlay = () => {
-    audio.play()
-}
-
-const audioPause = () => {
-    audio.pause()
-}
+const audioPlay = () => audio.play()
+const audioPause = () => audio.pause()
 
 const loadMusic = (data) => {
     audio.src = `lagu/${data.song}`
@@ -107,9 +86,20 @@ const prevSong = () => {
     audioPlay()
 }
 
-const  addZero = number => {
+const addZero = number => {
     if (number < 10) {
         return `0${number}`
     }
     return number
 }
+
+playButton.addEventListener('click', () => {
+    if (isSongPlaying) {
+        audioPause()
+        return
+    }
+    audioPlay()
+})
+
+nextButton.addEventListener('click', nextSong)
+prevButton.addEventListener('click', prevSong)
